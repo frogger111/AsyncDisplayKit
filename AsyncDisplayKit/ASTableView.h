@@ -111,6 +111,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat leadingScreensForBatching;
 
 /**
+ + * The number of screens left to scroll backwards before the delegate -tableView:willBeginBatchFetchingWithContext:atTail: is called.
+ + *
+ + * Defaults to one screenful.
+ + */
+@property (nonatomic, assign) CGFloat trailingScreensForBatching;
+
+/**
  * Reload everything from scratch, destroying the working range and all cached nodes.
  *
  * @param completion block to run on completion of asynchronous loading or nil. If supplied, the block is run on 
@@ -407,7 +414,7 @@ NS_ASSUME_NONNULL_BEGIN
  * ASTableView currently only supports batch events for tail loads. If you require a head load, consider implementing a
  * UIRefreshControl.
  */
-- (void)tableView:(ASTableView *)tableView willBeginBatchFetchWithContext:(ASBatchContext *)context;
+- (void)tableView:(ASTableView *)tableView willBeginBatchFetchWithContext:(ASBatchContext *)context atTail:(BOOL)atTail;
 
 /**
  * Tell the tableView if batch fetching should begin.
@@ -420,7 +427,7 @@ NS_ASSUME_NONNULL_BEGIN
  * If not implemented, the tableView assumes that it should notify its asyncDelegate when batch fetching
  * should occur.
  */
-- (BOOL)shouldBatchFetchForTableView:(ASTableView *)tableView;
+- (BOOL)shouldBatchFetchForTableView:(ASTableView *)tableView atTail:(BOOL)atTail;
 
 /**
  * Informs the delegate that the table view did remove the node which was previously

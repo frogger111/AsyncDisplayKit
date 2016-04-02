@@ -28,9 +28,11 @@ ASDISPLAYNODE_EXTERN_C_BEGIN
  */
 extern BOOL ASDisplayShouldFetchBatchForContext(ASBatchContext *context,
                                                 ASScrollDirection scrollDirection,
+                                                BOOL isScrollingTowardsTail,
                                                 CGRect bounds,
                                                 CGSize contentSize,
                                                 CGPoint targetOffset,
-                                                CGFloat leadingScreens);
+                                                CGFloat leadingScreens,
+                                                CGFloat trailingScreens);
 
 ASDISPLAYNODE_EXTERN_C_END

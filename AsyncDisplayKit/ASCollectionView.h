@@ -106,6 +106,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat leadingScreensForBatching;
 
 /**
+ * The number of screens left to scroll backwards before the delegate -collectionView:willBeginBatchFetchWithContext:atTail: is called.
+ *
+ * Defaults to one screenful.
+ */
+@property (nonatomic, assign) CGFloat trailingScreensForBatching;
+
+/**
  * Optional introspection object for the collection view's layout.
  *
  * @discussion Since supplementary and decoration views are controlled by the collection view's layout, this object
@@ -448,7 +455,7 @@ NS_ASSUME_NONNULL_BEGIN
  * UICollectionView currently only supports batch events for tail loads. If you require a head load, consider
  * implementing a UIRefreshControl.
  */
-- (void)collectionView:(ASCollectionView *)collectionView willBeginBatchFetchWithContext:(ASBatchContext *)context;
+- (void)collectionView:(ASCollectionView *)collectionView willBeginBatchFetchWithContext:(ASBatchContext *)context atTail:(BOOL)atTail;
 
 /**
  * Tell the collectionView if batch fetching should begin.
@@ -461,7 +468,7 @@ NS_ASSUME_NONNULL_BEGIN
  * If not implemented, the collectionView assumes that it should notify its asyncDelegate when batch fetching
  * should occur.
  */
-- (BOOL)shouldBatchFetchForCollectionView:(ASCollectionView *)collectionView;
+- (BOOL)shouldBatchFetchForCollectionView:(ASCollectionView *)collectionView atTail:(BOOL)atTail;
 
 /**
  * Informs the delegate that the collection view did remove the node which was previously
