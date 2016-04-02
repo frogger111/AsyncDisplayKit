@@ -709,9 +709,9 @@ static NSString * const kCellReuseIdentifier = @"_ASTableViewCell";
   BOOL isScrollingTowardsTail;
   ASScrollDirection scrollDirection = [self scrollDirection];
   if (ASScrollDirectionContainsVerticalDirection(scrollDirection)) {
-    isScrollingTowardsTail = scrollDirection == ASScrollDirectionUp;
+    isScrollingTowardsTail = scrollDirection == ASScrollDirectionDown;
   } else {
-      isScrollingTowardsTail = scrollDirection == ASScrollDirectionLeft;
+      isScrollingTowardsTail = scrollDirection == ASScrollDirectionRight;
   }
   if (![self shouldBatchFetchAtTail:isScrollingTowardsTail]) {
   
